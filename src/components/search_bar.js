@@ -6,7 +6,16 @@ import React, { Component } from 'react';
 class SearchBar extends Component {
   //cada clase debe tener un render() function
   render() {
-    return <input />;
+
+    // Se puede utilizar "arrow functions" como en la segunda linea o se puede mandar a llamar el metodo onInputChange, la primera opcion es la mas corta y con menos codigo ya que no tienes que declarar un metodo y luego mandarlo a llamar.
+    // return <input onChange={this.onInputChange} />;
+    return <input onChange={(event) => console.log(event.target.value)} />;
+  }
+
+  //creacion de nuevo metodo para utilizarlo como handler del onChange del input
+  //el event de parametro contiene informacion del evento cuando se mando a llamar.
+  onInputChange(event) {
+    console.log(event.target.value);
   }
 }
 
