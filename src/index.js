@@ -21,11 +21,18 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { videos: [] };
+    this.state = {
+      videos: [],
+      selectedVideo: null
+     };
 
-    YTSearch({key: API_KEY, term: 'dj erwin'}, (videos) => {
-      // this.setState({ videos: videos });
-      this.setState({ videos }); //si el key y value tienen el mismo nombre se puede dejar de esta forma.
+    YTSearch({key: API_KEY, term: 'gtx 1070'}, (videos) => {
+      // this.setState({ videos }); //si el key y value tienen el mismo nombre se puede dejar de esta forma.
+      // cada vez que se manda a llamar el setState en el constructor entonces se vuelve a hacer render a la pagina.
+      this.setState({
+        videos: videos,
+        selectedVideo: videos[0]
+      });
     });
   }
 
@@ -34,8 +41,10 @@ class App extends Component {
     return (
       <div>
         <SearchBar />
-        <VideoDetail video={this.state.videos[0]}/>
-        <VideoList videos = {this.state.videos} />
+        <VideoDetail video={this.state.selectedVideo} />
+        <VideoList
+          onVideoSelect={(selectedVideo) => this.setState({selectedVideo}) }
+          videos = {this.state.videos} />
       </div>
     );
   }
