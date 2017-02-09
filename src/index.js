@@ -5,6 +5,7 @@ import YTSearch from 'youtube-api-search';
 // como estamos importando un componente que nosostros creamos entonces tenemos que especificar toda la ruta se este componente. A diferencia de los imports de arriba, ya que los imports de arriba son package que instalamos con npm.
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
+import VideoDetail from './components/video_detail';
 // api key para hacer request a youtube
 const API_KEY = 'AIzaSyAPBW29xL-BfL8lHca1yUspMwJBlXvHOxE';
 
@@ -33,6 +34,7 @@ class App extends Component {
     return (
       <div>
         <SearchBar />
+        <VideoDetail video={this.state.videos[0]}/>
         <VideoList videos = {this.state.videos} />
       </div>
     );

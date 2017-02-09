@@ -1,6 +1,12 @@
 import React from 'react';
 
 const VideoDetail = ({video}) => {
+
+  //si el video viene vacio entonces lo validamos y regresamos loading
+  if(!video) {
+    return <div>Loading...</div>;
+  }
+
   const videoId = video.id.videoId;
   // ES5 sintax
   // const url = 'https://www.youtube.com/embed/' + videoId;
