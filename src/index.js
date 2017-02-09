@@ -22,7 +22,7 @@ class App extends Component {
 
     this.state = { videos: [] };
 
-    YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
+    YTSearch({key: API_KEY, term: 'dj erwin'}, (videos) => {
       // this.setState({ videos: videos });
       this.setState({ videos }); //si el key y value tienen el mismo nombre se puede dejar de esta forma.
     });
