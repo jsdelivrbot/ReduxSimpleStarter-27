@@ -26,7 +26,12 @@ class App extends Component {
       selectedVideo: null
      };
 
-    YTSearch({key: API_KEY, term: 'gtx 1070'}, (videos) => {
+     this.videoSearch('muse - madness');
+  }
+
+  // term es el video a buscar que ingreso el ususario
+  videoSearch(term) {
+    YTSearch({key: API_KEY, term: term}, (videos) => {
       // this.setState({ videos }); //si el key y value tienen el mismo nombre se puede dejar de esta forma.
       // cada vez que se manda a llamar el setState en el constructor entonces se vuelve a hacer render a la pagina.
       this.setState({
@@ -40,7 +45,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={(term) => this.videoSearch(term)}  />
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           onVideoSelect={(selectedVideo) => this.setState({selectedVideo}) }
