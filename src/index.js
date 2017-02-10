@@ -1,4 +1,5 @@
 //para importar react al archivo, el return <div>Hola!</div>; es JSX y en realidad regresa JS con referencia al modulo de react.
+import _ from 'lodash';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
@@ -43,9 +44,12 @@ class App extends Component {
 
   // videos lo estamos pasando como props a VideoList
   render() {
+    // con _.debounce le pasamos la funcion para buscar videos y la limitamos para que solo pueda ser corrida 1 vez cada 300 mili segundos
+    const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 400);
+
     return (
       <div>
-        <SearchBar onSearchTermChange={(term) => this.videoSearch(term)}  />
+        <SearchBar onSearchTermChange = { videoSearch }  />
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           onVideoSelect={(selectedVideo) => this.setState({selectedVideo}) }
